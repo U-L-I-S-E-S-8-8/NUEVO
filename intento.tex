@@ -1,0 +1,1213 @@
+\documentclass[twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amstext}
+\usepackage{pstricks}
+\usepackage{pstricks-add,graphicx}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{graphics}
+\usepackage{multicol,amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage{eso-pic}
+\usepackage[spanish]{babel}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amssymb, graphics, setspace}
+\usepackage{tikz}
+\usepackage{pst-math,pst-plot}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{pst-arrow}
+\usepackage{pst-poly}
+%%%%%%%%%%%%%%%%
+\usepackage{version}
+\includeversion{sol}
+%\excludeversion{sol}
+\excludeversion{sol2}
+\newcommand{\mathsym}[1]{{}}
+\newcommand{\unicode}[1]{{}}
+
+\newcounter{mathematicapage}
+\title{Problemario Variable Compleja}
+\author{V. Janitzio Mejia Huguet,\\ Victor A. Cruz B. \\Ra\'ul R. Mendez L.\\ \'Oscar Carranza Jim\'enez\\ Guillermo L\'opez \'Alvarez\\ \& \\C\'esar Ulises Castillo Gonz\'alez}
+%---------------COMANDOS
+\renewcommand{\sinh}{\,\operatorname{senh}\,}
+\renewcommand{\cosh}{\,\operatorname{cosh}\,}
+\renewcommand{\sin}{\,\operatorname{sen}\,}
+\renewcommand{\cos}{\,\operatorname{cos}\,}
+\renewcommand{\tan}{\,\operatorname{tan}\,}
+\renewcommand{\cot}{\,\operatorname{cot}\,}
+\renewcommand{\Re}{\,\operatorname{Re}\,}
+\renewcommand{\Im}{\,\operatorname{Im}\,}
+\newcommand{\sech}{\operatorname{sech}}
+\def\df{\,\mathrm{d}}
+\def\C{\mathbb{C}}
+\def\D{\mathbb{D}}
+\def\dime{\operatorname{dim}_{\mathbb R}\,}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\A}{\mathbb{A}}
+%\newcommand{\C}{\mathbb{C}}
+\newcommand{\degre}{\ensuremath{^\circ}}
+\renewcommand{\emph}[1]{\textbf{\textit{\textcolor{amber}{#1}}}}
+\newtheorem{teor}{Teorema}
+%------------------Color Set--------------------------
+\definecolor{LightBlue}{RGB}{66, 163, 251}
+\definecolor{DarkBlue}{RGB}{36, 100, 176}
+\definecolor{LightGray}{gray}{.94}
+\definecolor{DarkGray}{gray}{.172}
+\definecolor{Orange}{RGB}{229, 133, 3}
+\definecolor{MediumBlue}{RGB}{38, 119, 193}
+\definecolor{amber}{rgb}{1.0, 0.49, 0.0}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+%%%DImensiones hojas
+\setlength{\oddsidemargin}{0.25 in}
+\setlength{\evensidemargin}{-0.25 in}
+\setlength{\topmargin}{-0.6 in}
+\setlength{\textwidth}{6.5 in}
+\setlength{\textheight}{8.5 in}
+\setlength{\headsep}{0.75 in}
+\setlength{\parindent}{0 in}
+\setlength{\parskip}{0.1 in}
+
+%%%%Ambiente problemas
+\usepackage[skins,xparse,breakable]{tcolorbox}
+\tcbuselibrary{listingsutf8} % o listings o minted
+%\newtcolorbox[use counter=example, number within=section]{example}[2][]
+%{colback=amber!5!white,colframe=amber,
+%fonttitle=\bfseries, title=Ejercicio \thelecnum.: }
+\newtcolorbox[auto counter,number within=chapter]{example}[2][]{%
+breakable,colback=green!5!white,colframe=green!65!black,fonttitle=\bfseries,title=Ejercicio ~\thetcbcounter #1.}
+\newtcolorbox[auto counter,number within=chapter]{solucion}[2][]{%
+breakable,colback=yellow!5!white,colframe=yellow!65!black,fonttitle=\bfseries,title=Soluci\'on.}
+\begin{document}
+\chapter{Números complejos}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{}
+    Comprobar lo siguiente.
+    \begin{multicols}{2}
+        \begin{enumerate}[label=\alph*).]
+            \item $(\sqrt{2}-i)-i(1-i\sqrt{2})=-2i$.
+            \item $(2,-3)(-2,1)=(-1,8)$.
+            \item $\displaystyle(3,1)(3,-1)\left(\frac{1}{5},\frac{1}{10}\right)=(2,1)$.
+            \item $\displaystyle \frac{1+i2}{3-i4}+\frac{2-i}{i5}=-\frac{2}{5}$.
+        \end{enumerate}
+    \end{multicols}
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        \begin{enumerate}[label=\alph*).]
+            \item Presentamos el desarrollo de las operaciones
+                  \begin{eqnarray*}
+                      (\sqrt{2}-i)-i(1-i\sqrt{2}) & = & \sqrt{2} - i - i+i^2 \sqrt{2}\\
+                      & = & \sqrt{2} - i - i- \sqrt{2}\\
+                      & = & -2i.
+                  \end{eqnarray*}
+            \item Consideramos  la identificaci\'on de los $z=x+iy$  con $(x,y)$, por lo que tenemos que:
+                  \begin{equation}\label{eq:ww}
+                      \left(x_1,y_1\right)\left(x_2,y_2\right) = \left(x_1 x_2 - y_1 y_2 , y_1 x_2 + x_1 y_2\right)
+                  \end{equation}
+                  Entonces:
+                  \begin{eqnarray*}
+                      \left(2,-3\right)\left(-2,1\right) & = & \left(\left(2\right)\left(-2\right) - \left(-3\right)\left(1\right) , \left(-3\right)\left(-2\right) + \left(2\right)\left(1\right) \right)\\
+                      & = & \left(-4 +3,6 + 2\right)\\
+                      & = & \left(-1,8\right).
+                  \end{eqnarray*}
+            \item Procedemos como sigue, primero utilizando la asociatividad para el producto de n\'umeros complejos.
+                  \begin{eqnarray*}
+                      \displaystyle(3,1)(3,-1)\left(\frac{1}{5},\frac{1}{10}\right) &=&\displaystyle\left((3,1)(3,-1)\right)\left(\frac{1}{5},\frac{1}{10}\right)\\
+                      & = & \left( (3)(3) - (1)(-1),(1)(3) + (3)(-1) \right)\left(\frac{1}{5},\frac{1}{10}\right)\\
+                      & = & (9+1,3-3)\left(\frac{1}{5},\frac{1}{10}\right)= (10,0)\left(\frac{1}{5},\frac{1}{10}\right)\\
+                      & = & \left((10)\left(\frac{1}{5}\right) - (0)\left(\frac{1}{10}\right),(0)\left(\frac{1}{5}\right) + (10) \left(\frac{1}{10}\right)\right)\\
+                      & = & \left(\frac{10}{5},\frac{10}{10}\right)\\
+                      & = & (2,1).
+                  \end{eqnarray*}
+            \item Procedemos como sigue:
+                  \begin{eqnarray*}
+                      \frac{1+i2}{3-i4}+\frac{2-i}{i5} & = & \frac{i5-10+6-3i-8i-4}{15i + 20}= \frac{-8-6i}{15i +20} \left(\frac{-8-6i}{15i +20}\right)\left(\frac{15i - 20}{15i - 20}\right)\\
+                      &=& \frac{-160 +120i -120i - 90}{400 + 225}= \frac{-250}{625}= -\frac{2}{5}.
+                  \end{eqnarray*}
+        \end{enumerate}
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Probar que para $z\in\C$ se tienen las siguientes identidades.
+    \begin{multicols}{3}
+        \begin{enumerate}[label=\alph*).]
+            \item $\Im(iz)=\Re(z)$.
+            \item $\Re(iz)=-\Im(z)$.
+            \item Si $z\neq0$, $\displaystyle\frac{1}{\frac{1}{z}}=z$.
+            \item $(-1)z=-z$.
+        \end{enumerate}
+    \end{multicols}
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Para $z\in\C$, escribimos $z=x+iy$ para $x,y\in \R$. Notemos que entonces
+        \[
+            iz=i(x+iy)=ix-y=-y+ix.
+        \]
+        \begin{enumerate}[label=\alph*).]
+            \item Primeramente
+                  $$\Im(iz)=\Im(ix-y)=\Im(iz)=x$$
+                  Por otro lado,
+                  $$\Re(z)=\Re(x+iy)=x.$$
+                  Entonces, se cumple:
+                  $$\Im(iz)=\Re(z).$$
+
+            \item Tenemos que
+                  $$\Re(iz)=\Re(-y+ix)=-y$$
+                  Por otro lado,
+                  $$\Im(z)=\Im(x+iy)=y.$$
+                  Entonces, se cumple:
+                  $$\Re(iz)=-\Im(z).$$
+            \item Sabemos que el cociente de dos n\'umeros complejos $z_1,z_2\in\C$ donde $z_2\neq0$ est\'a dada como
+                  \begin{equation}\label{hgfg}
+                      \frac{z_{1}}{z_{2}} = z_{1}z_{2}^{-1}.
+                  \end{equation}
+                  Recordemos que si $z\neq0$, entonces $z^{-1}$ es su inverso multiplicativo, es decir
+                  $$zz^{-1}=z^{-1}z=1.$$
+                  As\'i tambi\'en, $z$ es el inverso multiplicativo de $z^{-1}$. Si consideramos que $z_{1}=1$ y $z_{2}=z$ en \eqref{hgfg}, entonces se tiene:
+                  $$ \frac{1}{z}=z^{-1}.$$
+                  As\'i tambien consideramos que $z_{1}=1$ y $\displaystyle z_{2}=\frac{1}{z}$ en \eqref{hgfg}, entonces se tiene:
+                  $$ \frac{1}{\frac{1}{z}}=\left(\frac{1}{z}\right)^{-1}.$$
+                  Combinando estas identidades, tenemos que
+                  $$\frac{1}{\frac{1}{z}}=\left(\frac{1}{z}\right)^{-1}=(z^{-1})^{-1}=z.$$
+            \item Recordemos que $-z\in \C$ es tal que $z+(-z)=0$. Por otra parte, si escribimos $(-1)z=(-1)(x+iy)=-x-iy$ es tal que
+                  $$z+(-1)z=0.$$
+                  Como el inverso aditivo es \'unico, concluimos que
+                  $$(-1)z=-z.$$
+        \end{enumerate}
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Considere los n\'umeros complejos $z=13+5i$, $w=2-6i$, y $\zeta= 1+9i$. Calcular $z+w$, $w-\zeta$, $z \cdot \zeta$, $w \cdot \zeta$, $\zeta-z$
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{C\'odigo en MatLab}
+        Para darle soluci\'on a estos problemas vamos a utilizar los n\'umeros complejos en su forma binomial.\\
+        La primera operaci\'on con n\'umeros complejos que se nos pide realizar es la \textbf{suma} de $z$ y $w$, entonces escribimos
+        $$z+w = (13 + 5i) + (2- 6i),$$ luego, operamos la parte real  de $z$ con la parte  real de $w$, as\'i como su parte imaginaria de ambos n\'umeros complejos. Por lo tanto, el resultado final es
+        $$z + w = 15-i.$$
+        Para realizar la \textbf{diferencia} de los n\'umeros complejos $w$ y $\zeta$ , escribimos
+        $$ w - \zeta = (2-6i) - (1 + 9i),$$
+        luego, de manera an\'aloga a la \textbf{suma}, la \textbf{diferencia} o \textbf{sustracci\'on} de los n\'umeros  complejos $w$ y $\zeta$ se operan para obtener
+        $$w - \zeta = 1- 15i. $$
+        El \textbf{producto} de dos n\'umeros de complejos se realiza haciendo uso de la propiedad distributiva.\\ Primero escribimos
+        $$z \cdot \zeta = (13 + 15i)\cdot(1 + 9i),$$
+        luego, la parte real de $z$ va a multiplicar a la parte real e imaginaria de $\zeta$, de igual manera, la parte imaginaria de $z$ va a multiplicar a ambas partes de $\zeta$. El resultado final es
+        $$z\cdot\zeta=-32+ 122i.$$
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Si $z=6-2i$, $w=4+3i$, y $\zeta=-5+i$, calcular $z+\overline{z}$,  $z+2\overline{z}$, $z-\overline{w}$, $z\cdot\overline{\zeta}$, y $w \cdot \overline{\zeta}^2 $
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{C\'odigoMatLab}
+        \begin{itemize}
+            \item $z+\overline{z}=(6-2i)+\overline{(6-2i)}=(6-2i)+(6+2i)= 12.$
+            \item $z+ 2\cdot \overline{z}=(6-2i)+2\cdot \overline{(6-2i)}=(6-2i)+\overline{(12-4i})= (6-2i)+(12+4i)= 18 +2i.$
+            \item $z+\overline{w}=(6-2i)+\overline{(4+3i)}=(6-2i)+(4-3i)=10-5i.$
+            \item $z\cdot \zeta= (6-2i)\cdot (-5+i)= (6-2i)\cdot(-5+i)=(-30+6i+10i-2i^2)=-28+16i.$
+            \item $w\cdot \overline{\zeta}^2= (4+3i)\cdot(\overline{-5+i}^2)=(4+3i)(-5-i)^2=(4+3i)(24+10i)=66+112i.$
+        \end{itemize}
+
+    \end{solucion}
+\end{sol}%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Considere los n\'umeros complejos $z=6-9i$, $w=4+2i$, $\zeta=1+10i$. Calcular $ \vert z \vert$, $ \vert w \vert$, $\vert z+w \vert$, $|\zeta-w|$, $\vert \zeta \cdot w \vert$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{C\'odigo MatLab}
+        Cuando queremos calcular el \emph{valor absoluto} de un número complejo, geométricamente, se busca encontrar la \textit{distancia} del origen al par coordenado ubicado en el plano complejo, es decir,\\ si $z= 6-9i$, el par coordenado en el plano lo escribimos como $(6,-9)$, así pues, de los cursos de cálculo, la \textit{distancia} la calculamos como sigue
+        $$\vert z \vert = \vert6-9i\vert = \sqrt{(6)^2+ (-9)^2} = \sqrt{36+81} = \sqrt{117}= 3\sqrt{13}.$$ Ahora podemos resolver lo que sigue
+        \begin{itemize}
+            \item $\vert w \vert=\sqrt{(4)^2+(2)^2}=\sqrt{16+4}= \sqrt{20}=2\sqrt{5}$
+            \item $\vert z+ w\vert=\vert(6-9i)+(4+2i)\vert=\vert(10-7i)\vert=\sqrt{(10)^2+(-7)^2}=\sqrt{100+49}=\sqrt{149}$
+            \item $\vert \zeta - w\vert=\vert(1+10i)-(4+2i)\vert=\vert(-3+8i)\vert=\sqrt{(10)^2+(-7)^2}=\sqrt{100+49}=\sqrt{149}$
+            \item $\vert \zeta \cdot w\vert=\vert(1+10i)\cdot(4+2i)\vert=\vert(4+2i-6i+16i^2)\vert=\vert(-16+42i)\vert=\sqrt{(-16)^2+(42)^2}=2\sqrt{505}$
+        \end{itemize}
+
+    \end{solucion}
+\end{sol}%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Consideremos los n\'umeros complejos $z=6-9i$, $w=4+2i$ y $c=1+10i$. Calcular $|z|$, $|w|$, $|z+w|$, $|c-w|$, $|z\cdot w|$ y $|c\cdot z|$. Verificar directamente que
+    \begin{multicols}{3}
+        \begin{enumerate}[label=\alph*).]
+            \item $|z+w|\leq|z|+|w|,$
+            \item $|z\cdot w|=|z||w|,$
+            \item $|c\cdot z|=|c||z|.$
+        \end{enumerate}
+    \end{multicols}
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        $\phantom{g}$\\
+        $|z+w|=|(6-9i)+(4+2i)|=|10-7i|=\sqrt{10^2+(-7)^2}=\sqrt{149}$\\
+        Por otro lado:
+        $$|z|=\sqrt{6^2+(-9)^2}=\sqrt{117}=3\sqrt{13}$$
+        y
+        $$|w|=\sqrt{4^2+2^2}=\sqrt{20}=2\sqrt{5}$$
+        De lo anterior podemos observar que\\
+        $$\sqrt{149}<3\sqrt{13}+2\sqrt{5}$$
+        $|z\cdot w|=|(6-9i)\cdot (4+2i)=|(24+18)+i(12-36)|=|6-24i|=\sqrt{42^2+(-24)^2}=6\sqrt{65}$\\
+        $|c\cdot z|=|(1+10i)\cdot (6-9i)|=|(96+51i)|=\sqrt{96^2+51^2}=108.71$\\
+        Por otra parte tenemos\\
+        $|z|=\sqrt{6^2+(-9)2}=3\sqrt{13}$\\
+        $|w|=\sqrt{4^2+2^2}=\sqrt{20}=2\sqrt{5}$\\
+        $|c|=\sqrt{1^2+10^2}=\sqrt{101}$\\
+        Por lo tanto\\
+        $|z|\cdot |w|=3\sqrt{13}\cdot 2\sqrt{5}=6\sqrt{65}=|z\cdot w|$\\
+        $|c|\cdot |z|=3\sqrt{13}\cdot \sqrt{101}=108.71=|c\cdot z|$
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Consideremos los n\'umeros complejos $z=a+ib$ y $w=c+id$ que se pueden hacer corresponder, de manera obvia, a los puntos $(a,b)$ y $(c,d)$ en el plano $\mathbb{R}^2$, y estos a su vez corresponden a los vectores $\vec{u}=\langle a,b \rangle$ y $\vec{v}=\langle c,d \rangle$. Verificar que la suma de $z$ y $w$ como n\'umeros complejos corresponde de forma natural con la suma de los vectores $\vec{u}$ y $\vec{v}$. \textquestiondown Que multiplicaci\'on de n\'umeros complejos corresponde a la de vectores?
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Tenemos que:\\
+        $z+w=(a+c)+i(b+d) \iff \langle a+c,b+d \rangle=\langle a,b \rangle+\langle c,d \rangle=Z+W$\\
+        Observamos tambien que $z\cdot \overline{z}=Z\cdot Z=|z|^2$ por lo que el producto que corresponde es el producto escalar ya que induce la misma norma.
+
+    \end{solucion}
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Considere los n\'umeros complejos $z=2-6i$ y $w=9+3i$. Utilice el software \textbf{MATLAB} para calcular $\dfrac{ z}{ w}$, $\dfrac{w}{ \overline{z}^2}$ y $z\cdot\left(w+\dfrac{ \overline{z}}{ \overline{w}}\right)$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{C\'odigo Matlab}
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Considere un tri\'angulo con v\'ertices $A$, $B$ y $C$. Sobre los lados $AB$ y $BC$ se construyen cuadrados. Con base en el punto $B$ se construye un segmento perpendicular a $AC$ y de la misma longitud de $AB$. Mostrar que el pol\'igono $BDHG$ es un parelelogramo.
+    \begin{center}
+        \newrgbcolor{xdxdff}{0.49019607843137253 0.49019607843137253 1.}
+        \newrgbcolor{zzttqq}{0.6 0.2 0.}
+        \newrgbcolor{ttzzqq}{0.2 0.6 0.}
+        \psset{xunit=0.5cm,yunit=0.5cm,algebraic=true,dimen=middle,dotstyle=o,dotsize=5pt 0,linewidth=1.6pt,arrowsize=3pt 2,arrowinset=0.25}
+
+        \begin{pspicture*}(-10.379942533798113,-1.1206480964734074)(10.835476095700674,13.401291404376947)
+            \pspolygon[linewidth=2.pt,linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](-3.,0.)(0.,4.)(-4.,7.)(-7.,3.)
+            \pspolygon[linewidth=2.pt,linecolor=zzttqq,fillcolor=zzttqq,fillstyle=solid,opacity=0.1](0.,4.)(5.,0.)(9.,5.)(4.,9.)
+            \pspolygon[linewidth=2.pt,linecolor=ttzzqq,fillcolor=ttzzqq,fillstyle=solid,opacity=0.1](-3.,0.)(0.,4.)(5.,0.)
+            \psline[linewidth=2.pt](-3.,0.)(0.,4.)(5.,0.)(-3.,0.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](-3.,0.)(0.,4.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](0.,4.)(-4.,7.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](-4.,7.)(-7.,3.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](-7.,3.)(-3.,0.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](0.,4.)(5.,0.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](5.,0.)(9.,5.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](9.,5.)(4.,9.)
+            \psline[linewidth=2.pt,linecolor=zzttqq](4.,9.)(0.,4.)
+            \psline[linewidth=2.pt](0.,12.)(0.,4.)
+            \psline[linewidth=2.pt,linecolor=ttzzqq](-3.,0.)(0.,4.)
+            \psline[linewidth=2.pt,linecolor=ttzzqq](0.,4.)(5.,0.)
+            \psline[linewidth=2.pt,linecolor=ttzzqq](5.,0.)(-3.,0.)
+            \begin{scriptsize}
+                \psdots[dotstyle=*,linecolor=xdxdff](-3.,0.)
+                \rput[bl](-2.4932779952601543,0.1889456460882478){\xdxdff{$A$}}
+                \psdots[dotstyle=*,linecolor=xdxdff](0.,4.)
+                \rput[bl](-0.07780509231310441,3.070051879723889){\xdxdff{$B$}}
+                \psdots[dotstyle=*,linecolor=xdxdff](5.,0.)
+                \rput[bl](3.676363636363636,0.159843562920211){\xdxdff{$C$}}
+                \psdots[dotstyle=*,linecolor=darkgray](-4.,7.)
+                \rput[bl](-3.890177987325918,7.289853939089222){\darkgray{$D$}}
+                \psdots[dotstyle=*,linecolor=darkgray](-7.,3.)
+                \rput[bl](-7.149611302146034,3.448378960908367){\darkgray{$E$}}
+                \psdots[dotstyle=*,linecolor=darkgray](9.,5.)
+                \rput[bl](9.118453188786507,5.281810200494684){\darkgray{$F$}}
+                \psdots[dotstyle=*,linecolor=darkgray](4.,9.)
+                \rput[bl](4.112894883884187,9.29789767768376){\darkgray{$G$}}
+                \psdots[dotstyle=*,linecolor=xdxdff](0.,12.)
+                \rput[bl](0.1259094898631528,12.295412243991548){\xdxdff{$H$}}
+            \end{scriptsize}
+        \end{pspicture*}
+
+    \end{center}
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Escribir los n\'umeros complejos$2+2i$, $1+\sqrt{3}i$, $\sqrt{3}-i$, $\sqrt{2}-i\sqrt{2}$, $i$, $-1-i$ en su forma polar.
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        \phantom{a}
+        \begin{multicols}{2}
+            \begin{enumerate}
+                \item $2+2i$\\ $\theta=\arctan(\frac{2}{2})=\frac{\pi}{4}$\\
+                      $|z|=\sqrt{2^2+2^2}=2\sqrt{2}$\\
+                      $z=2\sqrt{2}e^{i\frac{\pi}{4}}$
+                \item $1+\sqrt{3}i$\\
+                      $\theta=\arctan(\frac{\sqrt{3}}{1})=\frac{\pi}{3}$\\
+                      $|z|=\sqrt{1^2+\sqrt{3}^2}=2$\\
+                      $z=2e^{i\frac{\pi}{3}}$
+                \item $\sqrt{3}-i$\\
+                      $\theta=2\pi+\arctan(\frac{-1}{\sqrt{3}})^=\frac{11}{6}\pi$\\
+                      $|z|=\sqrt{\sqrt{3}^2+(-1)^2}=2$\\
+                      $z=2e^{i\frac{11}{6}\pi}$
+                \item $\sqrt{2}-i\sqrt{2}$\\
+                      $\theta=2\pi+\arctan{\frac{-\sqrt{2}}{\sqrt{2}}}=\frac{7}{4}\pi$\\
+                      $|z|=\sqrt{\sqrt{2}^2+(-\sqrt{2})^2}=2$\\
+                      $z=2e^{i\frac{7}{4}\pi}$
+                \item i\\
+                      $\theta=\frac{\pi}{2}$\\
+                      $|z|=\sqrt{0^2+1^2}=1$\\
+                      $z=e^{\frac{i\pi}{2}}$
+                \item $-1-i$\\
+                      $\theta=\pi+\arctan{\frac{-1}{-1}}=\frac{5}{4}\pi$\\
+                      $|z|=\sqrt{(-1)^2+(-1)^2}=\sqrt{2}$\\
+                      $z=\sqrt{2}e^{i\frac{5}{4}\pi}$
+            \end{enumerate}
+        \end{multicols}
+
+    \end{solucion}
+\end{sol}
+\begin{example}{}
+    Consideremos los n\'umeros complejos $z=13+5i$, $w=2-6i$, y $c=1+9i$. Calcular $z+w$, $w-c$, $z\cdot c$, $w\cdot c$ y $c-z$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Sean $z=x+iy$ y $z_1=x_1+iy_1$, dos números complejos, la suma de estos, de define como:
+        $$z+z_1=(x+x_1)+i(y+y_1)$$
+        Y la multiplicaci\'on;
+        $$z\cdot z_1=(xx_1-yy_1)+i(xy_1+yx_1)$$
+        Por lo que;\\
+        $z+w=(13+5i)+(2-6i)=(13+2)+i(5-6)=\boxed{15-i}$\\
+        $w-c=(2-6i)-(1+9i)=(2-1)+i(-6-9)=\boxed{1-15i}$\\
+        $z\cdot c=(13+5i)\cdot (1+9i)=(13\cdot 1-5\cdot 9)+i(13\cdot 9+5\cdot 1)=\boxed{-32+122i}$\\
+        $w\cdot c=(2-6i)\cdot (1+9i)=(2\cdot 1-(-6)\cdot 9)+i(2\cdot 9+(-6)\cdot 1)=\boxed{56+12i}$\\
+        $c-z=(1+9i)-(13+5i)=(1-13)+i(9-5)=\boxed{-12+4i}$
+
+    \end{solucion}
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Escribir los siguientes n\'umeros complejos en su forma polar:
+    \begin{multicols}{3}
+        \begin{enumerate}[label=\alph*).]
+            \item $2i$,
+            \item $1+i$,
+            \item $-3+\sqrt{3}i$,
+            \item $-i$,
+            \item $(2-i)^2$,
+            \item $|3-4i|$,
+            \item $\sqrt{5}-i$,
+            \item $\left(\dfrac{1-i}{\sqrt{3}}\right)^4$.
+        \end{enumerate}
+    \end{multicols}
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Para los siguientes ejercicios ser\'ia importante recordar que;\\
+        Sea $z\in\mathbb{C}:z=x+yi=|z|e^{i\theta}$, esta \'ultima expresi\'on es la \textbf{forma polar}  de un n\'umero complejo donde
+        $|z|$ es el valor absoluto del n\'umero complejo y $\theta$ es el argumento (medido en radianes) del n\'umero complejo que viene dado por las siguientes relaciones:
+        \begin{equation}\label{angulos}
+            \theta = \left\{\begin{array}{lr}
+                \arctan{\left(\dfrac{y}{x}\right)},      & x,y>0                  \\
+                \arctan{\left(\dfrac{y}{x}\right)}+\pi,  & x<0\; \textbf{y}\; y>0 \\
+                \arctan{\left(\dfrac{y}{x}\right)}+\pi,  & x<0,y<0                \\
+                \arctan{\left(\dfrac{y}{x}\right)}+2\pi, & x>0,y<0                \\
+                \pi/2,                                   & x=0,y>0                \\
+                \dfrac{3\pi}{2},                         & x=0,y<0                \\
+                \pi,                                     & x<0,y=0
+            \end{array}\right\}
+        \end{equation}
+        \begin{enumerate}
+            [label=\textsl{(\alph*)}] %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $2i$\\
+                  $x=0,y=2,\quad|z|=\sqrt{0^2+2^2}=2,\quad \theta=\dfrac{\pi}{2}$\\
+                  $\implies\boxed{z=2e^{i\frac{\pi}{2}}}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $1+i$ \\
+                  $x=1,y=1,\quad |z|=\sqrt{1^2+1^2}=\sqrt{2},\quad  \theta=\arctan\left(\dfrac{1}{1}\right)=\dfrac{\pi}{4}$
+                  \\$\implies\boxed{z=\sqrt{2}e^{i\frac{\pi}{4}}}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $-3+\sqrt{3}i$\\
+                  $x=-3,y=\sqrt{3},\quad |z|=\sqrt{(-3)^2+\left(\sqrt{3}\right)^2}=2\sqrt{3},\quad \theta=\arctan\left(\dfrac{\sqrt{3}}{-3}\right)+\pi=\dfrac{5\pi}{6}$\\
+                  $\implies \boxed{z=2\sqrt{3} e^{i\frac{5}{6}\pi}}$
+            \item $-i$\\
+                  $x=0, y=-1, \quad |z|=\sqrt{0^2+\left(-1\right)^2}=1, \quad \theta=\dfrac{3\pi}{2}$\\
+                  $\implies \boxed{z=e^{i\frac{3}{2}\pi}}$
+            \item $(2-i)^2$\\
+                  Primero desarrollemos la expresi\'on como un binomio al cuadrado
+                  \\$(2-i)^2=2^2-2\cdot2i+i^2=3-4i$\\
+                  $x=3,y=-4,\quad |z|=\sqrt{\left(3\right)^2+\left(-4\right)^2}=5\quad \theta=\arctan\left(\dfrac{-4}{3}\right)+2\pi\approx5.36$\\
+                  $\boxed{z\approx5e^{i5.36}}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $|3-4i|$\\
+                  Primero calculemos el valor absoluto\\
+                  $|3-4i|=\sqrt{\left(3\right)^2+\left(-4\right)^2}=5$\\
+                  $x=5,y=0,\quad |z|=\sqrt{\left(5\right)^2+\left(0\right)}=5,\quad \theta=\arctan(0)=0$\\
+                  $\boxed{z=5e^{0i}}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $\sqrt{5}-i$\\
+                  $x=\sqrt{5},y=-1,\quad |z|=\sqrt{\left(\sqrt{5}\right)^2+\left(-1\right)^2}=\sqrt{6},\theta=\arctan\left(\dfrac{-1}{\sqrt{5}}\right)+2\pi\approx5.86$\\
+                  $\boxed{z\approx\sqrt{6}e^{i5.86}}$
+            \item $\left(\dfrac{1-i}{\sqrt{3}}\right)^4$\\
+                  Desarrollemos la potencia del n\'umero complejo:
+                  \begin{eqnarray*}
+                      \left(\dfrac{1-i}{\sqrt{3}}\right)^4&=&\left(\dfrac{1}{\sqrt{3}}-\dfrac{i}{\sqrt{3}}\right)^4=\displaystyle\sum_{k=0}^{4}\dfrac{(-1)^k4!}{k!(4-k)!}\left(\dfrac{1}{\sqrt{3}}\right)^{4-k}\left(\dfrac{i}{\sqrt{3}}\right)^k\\ &=&\left(\dfrac{1}{\sqrt{3}}\right)^{4}\left(\dfrac{i}{\sqrt{3}}\right)^0-4\left(\dfrac{1}{\sqrt{3}}\right)^{3}\left(\dfrac{i}{\sqrt{3}}\right)^1+6\left(\dfrac{1}{\sqrt{3}}\right)^{2}\left(\dfrac{i}{\sqrt{3}}\right)^2+\\
+                      &&-4\left(\dfrac{1}{\sqrt{3}}\right)^{1}\left(\dfrac{i}{\sqrt{3}}\right)^3+\left(\dfrac{1}{\sqrt{3}}\right)^{0}\left(\dfrac{i}{\sqrt{3}}\right)^4\\&=&-\dfrac{4}{9}
+                  \end{eqnarray*}
+                  $x=-\dfrac{4}{9},y=0,\quad |z|=\sqrt{\left(-\dfrac{4}{9}\right)^2+0^2}=\dfrac{4}{9},\quad \theta=\pi$\\
+                  $\boxed{z=\dfrac{4}{9}e^{i\pi}}$
+        \end{enumerate}
+
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Dado un entero positivo $n$, deducir que la las soluciones a la ecuaci\'on $z^n=1$, son $z=e^{2\pi i\frac{k}{n}}$ donde $k\in\mathbb{Z}$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Para empezar debemos enunciar la siguiente:\\
+        Para $z=|z|\left(\cos(\theta)+i\sin(\theta)\right)$ y $n\in\mathbb{Z}:$
+        \begin{equation}\label{formula_moivre}
+            z^n=|z|^n\left(\cos(n\theta)+i\sin(n\theta)\right).
+        \end{equation}
+        Entonces por la ecuaci\'on anterior tenemos:
+        $$z^n=|z|^n\left(\cos(n\theta)+i\sin(n\theta)\right)=1$$
+        asociando parte real e imaginaria se tiene:
+        \[
+            \left\{\begin{array}{lr}
+                |z|=1           \\
+                \cos(n\theta)=1 \\
+                \sin(n\theta)=0
+            \end{array}\right\}
+        \]
+        de estas ecuaciones obtenemos:
+        $$cos(n\theta)=1\implies n\theta=2\pi k \iff \theta=\dfrac{2\pi k}{n},$$
+        $$\sin(n\theta)=0 \implies n\theta=2\pi k \iff \theta=\dfrac{2\pi k}{n}.$$
+        Donde $k\in\mathbb{Z}^+,$\\
+        Esto nos dice que las soluciones $z_k$ son:
+        $$\boxed{z_k=\cos\left(\dfrac{2\pi k}{n}\right
+            )+i\sin\left(\dfrac{2\pi k}{n}\right
+            )=e^{\frac{2\pi k}{n}i}}.$$
+        Debe de de quedar claro que $k\in\mathbb{Z}^+$ y $k\leq n-1$, esto es porque queremos las $n$ soluciones, mas no la repetici\'on de las mismas, si $k$ toma valores mayores a $n-1$ lo que va a suceder es que obtendremos soluciones que ya anteriormente habremos obtenido, esto es porque las funciones seno y coseno tienen periodicidad $2\pi$.
+
+    \end{solucion}
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Encontrar todas las ra\'ices sextas de $-1$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Escribimos\\
+        $z=\sqrt[6]{-1}=\sqrt[6]{e^{i\pi}}\implies z=e^{\frac{\pi+2k\pi}{6}i}$ con $0\leq k\leq 5$
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Mostrar que:
+    $$ z^5-1=(z-1)\left(z^2+z\cdot2\cos\left(\dfrac{3\pi}{5}\right)+1\right)\left(z^2+z\cdot2\cos\left(\dfrac{\pi}{5}\right)+1\right).$$
+    Con lo anterior, encontrar los valores para $\cos\left(\dfrac{\pi}{5}\right)  \text{ y } \cos\left(\dfrac{3\pi}{5}\right)$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+
+        %%
+        $\phantom{a}\\$
+            Primero nosotros sabemos que podemos factorizar $z^5-1$ de la siguiente manera:
+        $$z^5-1=(z-1)(z^4+z^3+z^2+z+1).$$
+        Ahora nosotros queremos que el polinomio de grado 4 que aparece en la expresi\'on anterior lo podamos factorizar de la siguiente forma:
+        \begin{eqnarray*}
+            z^4+z^3+z^2+z+1&=&(z^2+az+1)(z^2+bz+1)\\
+            &=&z^4+bz^3+az^3+2z^2+abz^2+az+bz+1.
+        \end{eqnarray*}
+        Ahora asociemos los coeficientes del lado izquierdo de la ecuaci\'on con los del lado derecho de la ecuaci\'on y as\'i obtenemos:
+        $$a+b=1 \text{ y } 2+ab=1$$
+        De la ecuaci\'on la primera ecuaci\'on:
+        $$ \implies b=1-a$$
+        Sustituyendo la \'ultima expresi\'on en la segunda ecuaci\'on:
+        $$\implies 2+a(1+a)=1\implies a^2-a-1=0$$
+        Resolviendo obtenemos:
+        $$a_1=\dfrac{1+\sqrt{5}}{2}, b_1=\dfrac{1-\sqrt{5}}{2}$$
+        $$a_2=\dfrac{1-\sqrt{5}}{2}, b_1=\dfrac{1+\sqrt{5}}{2}$$
+        Podemos ver que las dos soluciones son las mismas as\'i tomando cualquiera de los dos:
+        $$z^4+z^3+z^2+z+1=\left(z^2+\dfrac{1+\sqrt{5}}{2}z+1\right)\left(z^2+\dfrac{1-\sqrt{5}}{2}z+1\right).$$
+        $\implies$
+        \begin{equation}\label{ejercicio18a}
+            z^5-1=(z-1)\left(z^2+\dfrac{1+\sqrt{5}}{2}z+1\right)\left(z^2+\dfrac{1-\sqrt{5}}{2}z+1\right).
+        \end{equation}
+        Ya tenemos una expresi\'on para la factorizaci\'on de $z^5-1$ pero el ejercicio nos pide obtener una factorizaci\'on en t\'erminos de cosenos y adem\'as obtener el valor de dichos cosenos, para ello ahora vamos a factorizar $z^5-1$ pensando en lo siguiente:
+        $$z^5=1.$$
+        Es decir si calculamos las ra\'ices de la unidad , obtendremos la factorizaci\'on de $z^5-1$. Calculemos entonces la ra\'ices utilizando \eqref{raices_unidad}:
+        $$z_k=e^{\frac{2k\pi}{5}i}.$$
+        Entonces a $z^5-1$ lo podemos expresar como:
+        $$z^5-1=(z-1)\left(z-e^{i\frac{2\pi}{5}}\right)\left(z-e^{i\frac{4\pi}{5}}\right)\left(z-e^{i\frac{6\pi}{5}}\right)\left(z-e^{i\frac{8\pi}{5}}\right).$$
+        De este ultimo resultado ahora realicemos la siguiente multiplicaci\'on:
+        \begin{eqnarray*}
+            \left(z-e^{i\frac{2\pi}{5}}\right)\left(z-e^{i\frac{8\pi}{5}}\right)&=&z^2-ze^{i\frac{8\pi}{5}}-ze^{i\frac{2\pi}{5}}+e^{i(\frac{2\pi}{5}+\frac{8\pi}{5})}\\
+            &=&z^2-z\left(e^{i\frac{8\pi}{5}}+e^{i\frac{2\pi}{5}}\right)+e^{i2\pi}\\
+            &=&z^2-z\left(\cos\left(\dfrac{8\pi}{5}\right)+\cos\left(\dfrac{2\pi}{5}\right)+i\left(\sin\left(\dfrac{8\pi}{5}\right)+\sin\left(\dfrac{2\pi}{5}\right)\right)\right)+1
+        \end{eqnarray*}
+        Utilizando las siguientes identidades trigonom\'etricas:
+        \begin{equation}\label{sumadecosenos}
+            \cos(a)+\cos(b)=2\cos\left(\dfrac{a+b}{2}\right)\cos\left(\dfrac{a-b}{2}\right).
+        \end{equation}
+        \begin{equation}\label{sumadesenos}
+            \sin(a)+\sin(b)=2\sin\left(\dfrac{a+b}{2}\right)\cos\left(\dfrac{a-b}{2}\right).
+        \end{equation}
+        Entonces:
+        \begin{eqnarray*}
+            \left(z-e^{i\frac{2\pi}{5}}\right)\left(z-e^{i\frac{8\pi}{5}}\right)&=&z^2-z\left(2\cos\left(\pi\right)\cos\left(\dfrac{3\pi}{5}\right)\right)+i\left(2\sin\left(\pi\right)\cos\left(\dfrac{3\pi}{5}\right)\right)+1\\
+            &=&z^2-z\left(-2\cos\left(\dfrac{3\pi}{5}\right)+0\right)+1\\
+            &=&z^2+z\cdot2\cos\left(\dfrac{3\pi}{5}\right)+1.
+        \end{eqnarray*}
+        De manera similar realizamos esta multiplicaci\'on:
+        \begin{eqnarray*}
+            \left(z-e^{i\frac{4\pi}{5}}\right)\left(z-e^{i\frac{6\pi}{5}}\right)&=&z^2-z\left(e^{i\frac{4\pi}{5}}+e^{i\frac{6\pi}{5}}\right)+e^{i2\pi}.
+        \end{eqnarray*}
+        Realizando las operaciones correspondientes y utilizando las identidades \eqref{sumadecosenos} y \eqref{sumadesenos} obtenemos:
+        \begin{eqnarray*}
+            \left(z-e^{i\frac{4\pi}{5}}\right)\left(z-e^{i\frac{6\pi}{5}}\right)&=&z^2-z\left(2\cos(\pi)\cos\left(\dfrac{\pi}{5}\right)\right)+i\left(2\sin(\pi)\cos\left(\dfrac{\pi}{5}\right)\right)+1\\
+            &=&z^2-z\left(-2\cos\left(\dfrac{\pi}{5}\right)+0\right)+1\\
+            &=&z^2+z\cdot2\cos\left(\dfrac{\pi}{5}\right)+1.
+        \end{eqnarray*}
+        As\'i que llegamos a lo siguiente:
+        \begin{equation}\label{ejercicio18b}
+            z^5-1=(z-1)\left(z^2+z\cdot2\cos\left(\dfrac{3\pi}{5}\right)+1\right)\left(z^2+z\cdot2\cos\left(\dfrac{\pi}{5}\right)+1\right).
+        \end{equation}
+        Ahora comparemos \eqref{ejercicio18a} y \eqref{ejercicio18b}, ya que ambas expresiones representan a $z^5-1$ podemos concluir que:
+        $$2\cos\left(\dfrac{3\pi}{5}\right)=\dfrac{1-\sqrt{5}}{2}\quad  \text{ y }\quad 2\cos\left(\dfrac{\pi}{5}\right)=\dfrac{1+\sqrt{5}}{2}.$$
+        $\implies$
+        $$\cos\left(\dfrac{3\pi}{5}\right)=\dfrac{1-\sqrt{5}}{4}\quad  \text{ y }\quad \cos\left(\dfrac{\pi}{5}\right)=\dfrac{1+\sqrt{5}}{4}.$$
+
+    \end{solucion}
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Para algunos $\phi,\phi_1,\phi_2\in\mathbb{R}$, probar
+    \begin{multicols}{2}
+        \begin{enumerate}[label=\alph*).]
+            \item $e^{i\phi_1}e^{i\phi_2}=e^{i(\phi_1+\phi_2)},$
+            \item $e^{i0}=1,$
+            \item $\dfrac{1}{e^{i\phi}}=e^{-i\phi},$
+            \item $e^{i(\phi+2\pi)}=e^{i\phi},$
+            \item $|e^{i\phi}|=1,$
+            \item $\displaystyle\frac{\mathrm d}{\mathrm d \phi} \left(e^{i\phi}\right)=ie^{i\phi}.$
+        \end{enumerate}
+    \end{multicols}
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        \begin{enumerate}[label=\textsl{(\alph*)}]
+            \item Expresemos $e^{i\phi_1}e^{i\phi_2}$ en su forma rectangular:
+                  \begin{eqnarray*}
+                      e^{i\phi_1}e^{i\phi_2}&=&\left(\cos(\phi_1)+i\sin(\phi_1)\right)\left(\cos(\phi_2)+i\sin(\phi_2)\right)\\
+                      &=&\cos(\phi_1)\cos(\phi_2)-\sin(\phi_1)\sin(\phi_2)+i\left(\cos(\phi_1)\sin(\phi_2)+\cos(\phi_2)\sin(\phi_1)\right)\\
+                      &=&\cos(\phi_1+\phi_2)+i\sin(\phi_1+\phi_2).
+                  \end{eqnarray*}
+                  La ultima expresi\'on se obtiene utilizando identidades trigonom\'etricas para $\cos(a+b)$ y $\sin(a+b)$, entonces tenemos:\\
+                  $e^{i\phi_1}e^{i\phi_2}=e^{i(\phi_1+\phi_2)}.$
+            \item Desarrollemos $e^{i0}$:
+                  $$e^{i0}=\cos(0)+i\sin(0)=1.$$
+            \item Utilicemos \eqref{inverso} para obtener $\dfrac{1}{e^{i\phi}}$:
+                  $$\dfrac{1}{e^{i\phi}}=\dfrac{\overline{e^{i\phi}}}{|e^{\phi}|^2}=\dfrac{\cos(\phi)-i\sin(\phi)}{\cos^2(\phi)+\sin^2(\phi)}=cos(-\phi)+isin(-\phi)=\boxed{e^{-i\phi}}.$$
+            \item Desarrollando $e^{i(\phi+2\pi)}:$
+                  $$e^{i(\phi+2\pi)}=\cos(\phi+2\pi)+i\sin(\phi+2\pi)=\cos(\phi)+i\sin(\phi)=\boxed{e^{i\phi}}.$$
+            \item Utilizando \eqref{modulo} calculemos $|e^{i\phi}|:$
+                  $$|e^{i\phi}|=|cos(\phi)+\sin(\phi)|=\sqrt{\cos^2(\phi)+\sin^2(\phi)}=\boxed{1}.$$
+            \item Expresemos $\displaystyle\frac{\mathrm d}{\mathrm d \phi} \left(e^{i\phi}\right)$ en su forma rectangular:
+                  $$\displaystyle\frac{\mathrm d}{\mathrm d \phi} \left(cos(\phi)+i\sin(\phi)\right)=-\sin(\phi)+icos(\phi)=i\left(cos(\phi)+isin(\phi)\right)=\boxed{ie^{\phi}}.$$
+        \end{enumerate}
+
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Escribir en forma rectangular los siguientes n\'umeros complejos:
+    \begin{multicols}{4}
+        \begin{enumerate}[label=\alph*).]
+            \item $\sqrt{2}e^{i\frac{3}{4}\pi}$,
+            \item $34e^{i\frac{\pi}{2}}$,
+            \item $-e^{i250\pi}$,
+            \item $2e^{i4\pi}$.
+        \end{enumerate}
+    \end{multicols}
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        $\phantom{a}$\\
+        En estos ejercicios hay que recordar una ecuaci\'on muy importante en matem\'aticas, esta es la ecuaci\'on de Euler, sea $\theta\in\mathbb{R}$
+        \begin{equation}\label{formula_euler}
+            re^{i\theta}=r\left(\cos(\theta)+i\sin(\theta)\right)
+        \end{equation}
+        Ahora sea $z\in\mathbb{C}:z=x+yi,\text{\;podemos asociar}$
+        $$x=r\cos(\theta) ,\quad y=r\sin(\theta)$$
+        Donde r=$|z|$
+        \begin{enumerate}
+            [label=\textsl{(\alph*)}] %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $\sqrt{2}e^{i\frac{3}{4}\pi}$\\
+                  $r=\sqrt{2},\quad \theta=\dfrac{3}{4}\pi, \quad z=\sqrt{2}\cos\left(\dfrac{3}{4}\pi\right)+i\sqrt{2}\sin\left(\frac{3}{4}\pi\right)=\boxed{-1+i}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $34e^{i\frac{\pi}{2}}$\\
+                  $r=34,\quad \theta=\dfrac{\pi}{2},\quad z=34\cos\left(\dfrac{\pi}{2}\right)+i34\sin\left(\dfrac{\pi}{2}\right)=\boxed{34i}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $e^{-i215\pi}$\\
+                  $r=1,\quad\theta=215\pi,\quad z=\cos(-215\pi)+i\sin(-215\pi)=\cos(215\pi)-i\sin(215\pi)=-1+0i=\boxed{-1}$
+                  %ComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaIncisoComienzaInciso
+            \item $2e^{i4\pi}$\\
+                  $r=2,\quad \theta=4\pi,\quad z=\cos(4\pi)+i\sin(4\pi)=1+0i=\boxed{1}$
+        \end{enumerate}
+
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{}
+    Mostrar que para todo $z\in\mathbb C$, se cumple $|e^{z}|=e^{\Re z}$.
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Si $z=a+ib$, entonces
+        \[
+            |e^{z}|=|e^{a+ib}|=|e^{a}e^{ib}|.
+        \]
+        Utilizando la \emph{f\'ormula de Euler} y la definici\'on del m\'odulo de un n\'umero complejo, tenemos que
+        \begin{eqnarray*}
+            |e^z|&=&|e^{a}e^{ib}|=|e^{a}(\cos b + i\sin b)| =e^{a}|(\cos b + i\sin b)|=e^{a}\sqrt{(\cos^{2} b + \sin^{2} b)}=e^{a}\sqrt{1}\\
+            &=&e^{\Re (z)}.
+        \end{eqnarray*}
+
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Dado un n\'umero entero positivo $n$ y un n\'umero complejo $w$, encontrar todas las soluciones de $z^n=w$ para $z\in \mathbb C$.
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Sabemos de \eqref{formula_moivre} que:
+        $$z^n=|z|\left(\cos(n\theta)+i\sin(n\theta)\right).$$
+        Y tambien sabemos que $w$ puede ser expresado como:
+        $$w=|w|\left(\cos(\alpha)+i\sin(\alpha)\right).$$
+        Entonces tenemos lo siguiente:
+        $$|z|^n\left(\cos(n\theta)+i\sin(n\theta)\right)=|w|\left(\cos(\alpha)+i\sin(\alpha)\right).$$
+        Asociando t\'erminos obtenemos:
+        \[
+            \left\{\begin{array}{lr}
+                |z|=\sqrt[n]{|w|}          \\
+                \cos(n\theta)=\cos(\alpha) \\
+                \sin(n\theta)=\sin(\alpha)
+            \end{array}\right\}
+            .\]
+        Aqu\'i uno podr\'ia irse con la finta y decir lo siguiente:
+        $$\cos(n\theta)=\cos(\alpha)\implies n\theta=\alpha.$$
+        Lo cual no es cierto, pero hay que ser cuidadoso y recordar que la funci\'on coseno tiene periodicidad $2j\pi$ donde $j\in\mathbb{Z}.$\\
+        $\implies n\theta=\alpha+2k\pi \iff \theta=\dfrac{\alpha}{n}+\dfrac{2k\pi}{n}$, donde $k\in\mathbb{Z}^+$ y $k\leq n-1$, esto es porque que nosotros deseamos obtener n soluciones , sin tener repeticiones, un razonamiento muy parecido al que se tuvo en el ejercicio 17.Entonces la soluciones vienen dadas por:
+        $$\boxed{z_k=\sqrt[n]{|w|}e^{i(\frac{\alpha+2k\pi}{n})}=\sqrt[n]{|w|}\left(\cos\left(\dfrac{\alpha+2k\pi}{n}\right)+i\sin\left(\dfrac{\alpha+2k\pi}{n}\right)\right)}.$$
+
+    \end{solucion}
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Escribir el la forma $a+ib$ la expresi\'on $\sqrt{3+4i}$
+\end{example}
+\begin{sol}
+    \begin{solucion}{}
+        El problema equivale en encontrar en un n\'umero complejo $z=a+ib$ con $a,b\in\mathbb R$, que satisfaga:
+        $$z^{2}=(a+bi)^{2}=3+4i.$$
+        As\'i, se tiene la siguiente igualdad:
+        $$a^{2}+2abi-b^{2}=3+4i.$$
+
+        Igualando las partes reales e imaginarias, se obtiene el siguiente sistema de ecuaciones:
+
+        \begin{eqnarray}\label{eq:sis}
+            a^{2}-b^{2}&=&3;\label{eq:sis11}\\
+            2ab&=&4.\label{eq:sis22}
+        \end{eqnarray}
+
+        Despejando $a$ de la ecuaci\'on \eqref{eq:sis11}, se tiene
+        \begin{equation}
+            a=\frac{2}{b}.
+        \end{equation}
+        Sustituyendo $a$ en la ecuaci\'on de \eqref{eq:sis22}
+        $$\left(\frac{2}{b}\right)^{2}-b^{2}=3$$
+        que al desarrollar se tiene
+        $$
+            \frac{4}{b^{2}}-b^{2}=3,$$
+        y simplificando
+        $$\frac{4-b^{4}}{b^{2}}=3.$$
+        As\'i, se obtiene la ecuaci\'on
+        $$b^{4}+3b^{2}-4=0,$$
+        que factorizando se tiene:
+        $$(b^{2}+4)(b^{2}-1)=0.$$
+        Como $b$ es un n\'umero real, las \'unicas dos posibilidades son
+        $b_1 = 1$ y  $b_2 = -1$. Si consideramos $b_1 = 1$, entonces $a_1=2$ y si consideramos $b_2=-1$ entonces $a_2=-2$.
+        De aqu\'i, se obtienen los n\'umeros complejos
+        $$z_1 = 2 + i $$ y $$z_2 = -2 -i $$
+        son los buscados. Verificamos que se cumple que para $z_1$ y $z_2$,
+        $$
+            z^{2} = 3 + i4.$$
+        En efecto,
+        \begin{eqnarray*}
+            z_1^{2} &=&4 + 2(2i) - (1)^{2} =3 + i4, \\
+            z^{2}_2 &=&(-2) + 2(-2)(-1)i - (-1)^{2} = 3 + 4i.
+        \end{eqnarray*}
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Encuentrar todas las ra\'ices c\'ubicas de $3i$.
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Sabemos que para un número complejo $z=\sqrt[n]{w}$, $z$ esta dado por $$z=|w|^{\frac{1}{n}}e^{\frac{\alpha+2k\pi}{n}i} \text{ con } \alpha=Arg(w) \text{ y } 0\leq k\leq n-1$$
+        $\sqrt[3]{3i}=\sqrt[3]{3e^{\frac{\pi}{2}i}} \implies z=\sqrt[3]{3}e^{\frac{\frac{\pi}{2}+2k\pi}{3}i} \text{ con } 0\leq k\leq 2$
+
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Encontrar las ra\'ices quintas del n\'umero complejo $-1+i$.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{C\'odigo MatLab}
+    \end{solucion}
+\end{sol}
+
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Dibujar los siguientes conjuntos en el plano complejo:
+    \begin{multicols}{2}
+        \begin{enumerate}[label=\alph*).]
+            \item $\{z\in\mathbb{C}:|z-1+i|=2\},$
+            \item $\{z\in\mathbb{C}:|z-1+i|\leq2\},$
+            \item $\{z\in\mathbb{C}:\Re(z+2-2i)=3\},$
+            \item $\{z\in\mathbb{C}:|z-i|+|z+i|=3\},$
+            \item $\{z\in\mathbb{C}:|z|=|z+1|\},$
+            \item $\{z\in\mathbb{C}:|z-1|=2|z+1|\},$
+            \item $\{z\in\mathbb{C}:\Re(z^2)=1\},$
+            \item $\{z\in\mathbb{C}:\Im(z^2)=1.$
+        \end{enumerate}
+    \end{multicols}
+
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Dibujos en pstricks
+    \end{solucion}
+\end{sol}
+\begin{sol2}
+    \begin{solucion}{}
+        Para estos ejercicios ocuparemos la siguiente notaci\'on.Describimos un disco abierto con centro $z_0$ y de radio $r>0$ como:
+        $$\mathbb{D}_r(z_0)=\{z\in\mathbb{C}:|z-z_0|<r\}.$$
+        Describimos un disco cerrado con centro $z_0$ y de radio $r\geq0$ como
+        $$\overline{\mathbb{D}_r(z_0)}=\{z\in\mathbb{C}:|z-z_0|\leq r\}.$$
+        Describimos la circunferencia con centro $z_0$ y radio $r>0$ como:
+        $$\partial\mathbb{D}_r(z_0)=\{z\in\mathbb{C}:|z-z_0|=r\}.$$
+        \begin{enumerate}[label=\textsl{(\alph*)}]
+            \newpage
+            \item Empecemos reescribiendo:
+                  $$\{z\in\mathbb{C}:|z-1+i|=2\}=\{z\in\mathbb{C}:|z-(1-i)|=2\}=\partial\mathbb{D}_2(1-i).$$
+                  Entonces tenemos una circunferencia de radio $r=2$, con centro $z_0=1-i$ que podemos dibujar as\'i:
+                  \begin{tikzpicture}
+                      \begin{scope}[thick,font=\scriptsize]
+                          % Axes:
+                          % Are simply drawn using line with the `->` option to make them arrows:
+                          % The main labels of the axes can be places using `node`s:
+                          \draw [->] (-3,0) -- (4,0) node [above left]  {$\Re\{z\}$};
+                          \draw [->] (0,-4) -- (0,4) node [below right] {$\Im\{z\}$};
+                          % Axes labels:
+                          % Are drawn using small lines and labeled with `node`s. The placement can be set using options
+                          \iffalse% Single
+                              % If you only want a single label per axis side:
+                              \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+                              \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+                              \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+                              \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+                          \else% Multiple
+                              % If you want labels at every unit step:
+                              \foreach \n in {-2,...,-1,1,2,...,3}{%
+                                      \draw (\n,-3pt) -- (\n,3pt)   node [above] {$\n$};
+                                      \draw (-3pt,\n) -- (3pt,\n)   node [right] {$\n i$};
+                                  }
+                          \fi
+                      \end{scope}
+                      % The circle is drawn with `(x,y) circle (radius)`
+                      % You can draw the outer border and fill the inner area differently.
+                      % Here I use gray, semitransparent filling to not cover the axes below the circle
+                      % Place the equation into the circle:
+                      \node [below right,black] at (+2.5,1.5) {$|z-(1-i)|=2$};
+                      \fill (1,-1)  circle[radius=1pt] node[right,scale=0.7] {$1-i$};
+                      \draw[dashed,red,thick] (1,-1)--(2,0.7320) node[above,scale=0.8,black]{$z$};
+                      \draw[blue,thick] (1,-1) circle (2);
+                  \end{tikzpicture}
+            \item Reescribimos:
+                  $$\{z\in\mathbb{C}:|z-1+i|\leq2\}=\{z\in\mathbb{C}:|z-(1-i)|\leq2\}=\overline{\mathbb{D}_2(1-i)}.$$
+                  Entonces tenemos un disco cerrado de radio $r=2$, con centro $z_0=1-i$ que podemos dibujar as\'i:
+                  \begin{tikzpicture}
+                      \begin{scope}[thick,font=\scriptsize]
+                          % Axes:
+                          % Are simply drawn using line with the `->` option to make them arrows:
+                          % The main labels of the axes can be places using `node`s:
+                          \draw [->] (-3,0) -- (4,0) node [above left]  {$\Re\{z\}$};
+                          \draw [->] (0,-4) -- (0,4) node [below right] {$\Im\{z\}$};
+
+                          % Axes labels:
+                          % Are drawn using small lines and labeled with `node`s. The placement can be set using options
+                          \iffalse% Single
+                              % If you only want a single label per axis side:
+                              \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+                              \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+                              \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+                              \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+                          \else% Multiple
+                              % If you want labels at every unit step:
+                              \foreach \n in {-2,...,-1,1,2,...,3}{%
+                                      \draw (\n,-3pt) -- (\n,3pt)   node [above] {$\n$};
+                                      \draw (-3pt,\n) -- (3pt,\n)   node [right] {$\n i$};
+                                  }
+                          \fi
+                      \end{scope}
+                      % The circle is drawn with `(x,y) circle (radius)`
+                      % You can draw the outer border and fill the inner area differently.
+                      % Here I use gray, semitransparent filling to not cover the axes below the circle
+                      \path [draw=none,fill=pink,semitransparent] (+1,-1) circle (2);
+                      % Place the equation into the circle:
+                      \node [below right,black] at (+2.5,1.5) {$|z-(1-i)|\leq2$};
+                      \fill (1,-1)  circle[radius=1pt] node[right,scale=0.7] {$1-i$};
+                      \draw[dashed,red,thick] (1,-1)--(2,0.7320) node[above,scale=0.8,black]{$z$};
+                      \draw[purple,thick] (1,-1) circle (2);
+                  \end{tikzpicture}
+            \item Reescriendo el connjunto
+                  $$\{z\in\mathbb{C}:\Re(z+2-2i)=3\}=\{z\in\mathbb{C}:x+2=3\}=\{z\in\mathbb{C}:x=1\}.$$
+                  Esto es el conjunto de todo los n\'umeros complejos con la forma $z=1+yi$ y lo podemos dibujar as\'i:
+                  \begin{tikzpicture}
+                      \begin{scope}[thick,font=\scriptsize]
+                          % Axes:
+                          % Are simply drawn using line with the `->` option to make them arrows:
+                          % The main labels of the axes can be places using `node`s:
+                          \draw [->] (-3,0) -- (4,0) node [above left]  {$\Re\{z\}$};
+                          \draw [->] (0,-4) -- (0,4) node [below right] {$\Im\{z\}$};
+                          % Axes labels:
+                          % Are drawn using small lines and labeled with `node`s. The placement can be set using options
+                          \iffalse% Single
+                              % If you only want a single label per axis side:
+                              \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+                              \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+                              \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+                              \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+                          \else% Multiple
+                              % If you want labels at every unit step:
+                              \foreach \n in {-2,...,-1,1,2,...,3}{%
+                                      \draw (\n,-3pt) -- (\n,3pt)   node [above] {$\n$};
+                                      \draw (-3pt,\n) -- (3pt,\n)   node [right] {$\n i$};
+                                  }
+                          \fi
+                      \end{scope}
+                      \node [below right,black] at (+2.5,1.5) {$x=1$};
+                      \fill (1,1)  circle[radius=2pt,black] node[right,scale=0.7] {$1+yi$};
+                      \draw[draw=red,ultra thick] (1,-4)--(1,4);
+                  \end{tikzpicture}
+            \item Para este inciso hagamos algo de \'algebra:
+                  \begin{eqnarray*}
+                      |z-i|+|z+i|&=&3.
+                      %|z+i|&=&3-|z-i|
+                  \end{eqnarray*}
+                  Primero elevamos al cuadrado y sustituimos $|z-i|=|x+i(y-1)| \text{ , } |z+i|=|x+i(y+i)|$ en la expresi\'on:
+                  \begin{eqnarray*}
+                      |z+i|^2&=&9-6|z-i|+|z-i|^2\\
+                      x^2+(y+1)^2&=&9+x^2+(y-1)^2-6|z-i|
+                  \end{eqnarray*}
+                  Desarrollamos los binomios y se realizan las cancelaciones correspondientes:
+                  \begin{eqnarray*}
+                      \cancel{x^2}+\cancel{y^2}+2y+1&=&9+\cancel{x^2}+\cancel{y^2}-2y+a-6|z-i|\\
+                      9-4y&=&6|z-i|
+                  \end{eqnarray*}
+                  \newpage Elevamos al cuadrado a ambos lados, desarrollamos los binomios y realizamos el \'algebra correspondiente:
+                  \begin{eqnarray*}
+                      (9-4y)^2&=&36(x^2+(y-1)^2)\\
+                      81\cancel{-72y}+16y^2&=&36x^2+36y^2\cancel{-72y}+36\\
+                      36x^2+20y^2&=&45.\\
+                      \frac{4}{5}x^2+\frac{4}{9}y^2&=&1.
+                  \end{eqnarray*}
+                  Eso significa que tenemos lo siguiente:
+                  $$\dfrac{x^2}{\frac{5}{4}}+\dfrac{y^2}{\frac{9}{4}}=1.$$
+                  De aqu\'i podemos notar que tiene la forma de la ecuaci\'on de una elipse centrada en el origen de la forma $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$, donde $a^2=\frac{5}{4}$ y $b^2=\frac{9}{4}$, entonces ahora dibujamos el conjunto :
+                  $$\left\{z\in\mathbb{C}:\frac{x^2}{\frac{5}{4}}+\frac{y^2}{\frac{9}{4}}=1\right\}.$$
+                  \begin{tikzpicture}
+                      \begin{scope}[thick,font=\scriptsize]
+                          % Axes:
+                          % Are simply drawn using line with the `->` option to make them arrows:
+                          % The main labels of the axes can be places using `node`s:
+                          \draw [->] (-3,0) -- (4,0) node [above left]  {$\Re\{z\}$};
+                          \draw [->] (0,-4) -- (0,4) node [below right] {$\Im\{z\}$};
+
+                          % Axes labels:
+                          % Are drawn using small lines and labeled with `node`s. The placement can be set using options
+                          \iffalse% Single
+                              % If you only want a single label per axis side:
+                              \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+                              \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+                              \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+                              \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+                          \else% Multiple
+                              % If you want labels at every unit step:
+                              \foreach \n in {-2,...,-1,1,2,...,3}{%
+                                      \draw (\n,-3pt) -- (\n,3pt)   node [above] {$\n$};
+                                      \draw (-3pt,\n) -- (3pt,\n)   node [right] {$\n i$};
+                                  }
+                          \fi
+                      \end{scope}
+                      % The circle is drawn with `(x,y) circle (radius)`
+                      % You can draw the outer border and fill the inner area differently.
+                      % Here I use gray, semitransparent filling to not cover the axes below the circle
+                      % Place the equation into the circle:
+                      \node [below right,black] at (+2.5,1.5) {$|z+i|+|z-i|=3$};
+                      %    \fill (1,-1)  circle[radius=1pt] node[right,scale=0.7] {$1-i$};
+                      %\draw[dashed,red,thick] (0,1)--(0.5,1.8) node[above,scale=0.8,black]{$z$};
+                      \draw[thick,red] (0,0) ellipse (1.1180cm and 1.5cm);
+                  \end{tikzpicture}
+            \item Hagamos \'algebra para simplificar la expresi\'on:
+                  \begin{eqnarray*}
+                      |z|&=&|z+1|,\\
+                      |z|^2&=&|z+1|^2,\\
+                      x^2+\cancel{y^2}&=&(x+1)^2+\cancel{y^2},\\
+                      \cancel{x^2}&=&\cancel{x^2}+2x+1,\\
+                      2x+1&=&0.
+                  \end{eqnarray*}
+                  Entonces nosotros tenemos el conjunto:
+                  $$\left\{z\in\mathbb{C}:x=-\dfrac{1}{2}\right\}.$$
+                  Y lo podemos dibujar as\'i:\\
+                  \begin{tikzpicture}
+                      \begin{scope}[thick,font=\scriptsize]
+                          \draw [->] (-3,0) -- (4,0) node [above left]  {$\Re\{z\}$};
+                          \draw [->] (0,-4) -- (0,4) node [below right] {$\Im\{z\}$};
+                          \iffalse
+                              \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+                              \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+                              \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+                              \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+                          \else
+                              \foreach \n in {-2,...,-1,1,2,...,3}{%
+                                      \draw (\n,-3pt) -- (\n,3pt)   node [above] {$\n$};
+                                      \draw (-3pt,\n) -- (3pt,\n)   node [right] {$\n i$};
+                                  }
+                          \fi
+                      \end{scope}
+                      \node [below right,black] at (-2.5,1.5) {$x=1$};
+                      \fill (-0.5,1)  circle[radius=2pt,black] node[left,scale=0.7] {$-\frac{1}{2}+yi$};
+                      \draw[draw=red,ultra thick] (-0.5,-4)--(-0.5,4);
+                  \end{tikzpicture}
+            \item Hagamos \'algebra para obtener una expresi\'on equivalente:
+                  \begin{eqnarray*}
+                      |z-1|&=&2|z+1|\\
+                      |z-1|^2&=&4|z+1|\\
+                      (x-1)^2+y^2&=&4((x+1)^2+y^2)\\
+                      x^2-2x+y^2&=&4x^2\\
+                      x^2+y^2+10\dfrac{x}{3}+\dfrac{4}{3}&=&0\\
+                      x^2+10\dfrac{x}{3}+\dfrac{25}{9}-\dfrac{25}{9}+\dfrac{4}{3}+y^2&=&0\\
+                      \left(x+\dfrac{5}{3}\right)^2+y^2=\dfrac{13}{9}.
+                  \end{eqnarray*}
+                  La \'ultima expresi\'on es la ecuaci\'on de una circunferencia de radio $r=\dfrac{\sqrt{13}}{3}$ y centrada en $x=-\dfrac{5}{3},y=0$, por lo que nuestro conjunto puede ser expresado como:
+                  $$\left\{z\in\mathbb{C}:\left|z-\left(-\dfrac{5}{3}\right)\right|=\dfrac{\sqrt{13}}{3}\right\}=\partial\mathbb{D}_\frac{\sqrt{13}}{3}\left(-\frac{5}{3}\right).$$
+                  El conjunto lo podemos dibujar as\'i:\\
+                  \begin{tikzpicture}
+                      \begin{scope}[thick,font=\scriptsize]
+                          % Axes:
+                          % Are simply drawn using line with the `->` option to make them arrows:
+                          % The main labels of the axes can be places using `node`s:
+                          \draw [->] (-3,0) -- (3,0) node [above left]  {$\Re\{z\}$};
+                          \draw [->] (0,-4) -- (0,4) node [below right] {$\Im\{z\}$};
+                          % Axes labels:
+                          % Are drawn using small lines and labeled with `node`s. The placement can be set using options
+                          \iffalse% Single
+                              % If you only want a single label per axis side:
+                              \draw (1,-3pt) -- (1,3pt)   node [above] {$1$};
+                              \draw (-1,-3pt) -- (-1,3pt) node [above] {$-1$};
+                              \draw (-3pt,1) -- (3pt,1)   node [right] {$i$};
+                              \draw (-3pt,-1) -- (3pt,-1) node [right] {$-i$};
+                          \else% Multiple
+                              % If you want labels at every unit step:
+                              \foreach \n in {-3,...,-1,1,2,...,2}{%
+                                      \draw (\n,-3pt) -- (\n,3pt)   node [above] {$\n$};
+                                      \draw (-3pt,\n) -- (3pt,\n)   node [right] {$\n i$};
+                                  }
+                          \fi
+                      \end{scope}
+                      % The circle is drawn with `(x,y) circle (radius)`
+                      % You can draw the outer border and fill the inner area differently.
+                      % Here I use gray, semitransparent filling to not cover the axes below the circle
+                      % Place the equation into the circle:
+                      \node [below right,black] at (-3.5,2.5) {$|z-(-\frac{5}{3})|=\frac{\sqrt{13}}{3}$};
+                      \fill (-1.6666,0)  circle[radius=1pt] node[below,scale=0.7] {$1-i$};
+                      \draw[dashed,red,thick] (-1.6666,0)--(-1,1) node[above,scale=0.8,black]{$z$};
+                      \draw[blue,thick] (-1.6666,0) circle (1.2018);
+                  \end{tikzpicture}
+            \item Nosotros sabemos que $z^2=x^2-y^2+2xyi$, entonces $\Re(z^2)=x^2-y^2 $ entonces nuestro conjunto puede ser expresado como:
+                  $$\{z\in\mathbb{C}:x^2-y^2=1\}.$$
+                  la cual es una ecuaci\'on de la elipse de la forma $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1.$ donde $a^2=1,b^2=1$, entonces el conjunto lo podemos dibujar como :
+                  \pgfplotsset{every axis/.append style={
+                              axis x line=middle,    % put the x axis in the middle
+                              axis y line=middle,    % put the y axis in the middle
+                              axis line style={<->}, % arrows on the axis
+                              xlabel={$\Re(z)$},          % default put x on x-axis
+                              ylabel={$\Im(y)$},          % default put y on y-axis
+                          }}
+
+                  % arrows as stealth fighters
+                  \tikzset{>=stealth}
+                  \begin{tikzpicture}
+                      \begin{axis}[
+                              xmin=-4,xmax=4,
+                              ymin=-4,ymax=4]
+                          \addplot [red,thick,domain=-2:2] ({cosh(x)}, {sinh(x)});
+                          \addplot [red,thick,domain=-2:2] ({-cosh(x)}, {sinh(x)});
+                      \end{axis}
+                  \end{tikzpicture}
+            \item Del ejercicio anterior sabemos que $\Im(z^2)=2xy$, entonces nuestro conjunto lo podemos escribir como:
+                  $$\left\{z\in\mathbb{C}:xy=\dfrac{1}{2}\right\}.$$
+                  La cual es la ecuaci\'on de la hip\'erbola seg\'un ``Lehmann p\'agina 201"\cite[p\'ag.201]{Lehman} entonces podemos dibujarla as\'i:
+        \end{enumerate}
+
+    \end{solucion}
+\end{sol2}
+%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+\begin{example}{}
+    Consideremos un $a\in\mathbb{C}$ y un $b\in\mathbb{R}$. Mostrar que la ecuaci\'on $|z^2|+\Re(az)+b=0$ tiene soluci\'on si y s\'olo si $|a|^2\geq4b$. Adem\'as, mostrar que el conjunto de n\'umeros complejos que son  soluci\'on de la ecuaci\'on
+    $$|z^2|+\Re(az)+b=0$$
+    corresponden a una circunferencia.
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Sabemos que una circunferencia centrada en $z=-a$ tiene la siguiente forma:\\
+        $|z+a|^2\leq r^2$, donde $r\in\mathbb{R}$ es el radio de la circunferencia desarrollando el lado izquierdo:\\
+        $|z+a|^2=(z+a)(\overline{z+a)}=(z+a)(\overline{z}+\overline{a})=|z|^2+z\overline{a}+a\overline{z}+|a|^2=|z|^2+2\Re(az)+|a|^2$.\\
+        Esto se parece  a lo que tenemos en la ecuaci\'on, as\'i que , hay que hacer un arreglo a la expresi\'on.\\
+        $\left|z+\dfrac{a}{2}\right|^2=\left(z+\dfrac{a}{2}\right)\left(\overline{z+\dfrac{a}{2}}\right)=\left(z+\dfrac{a}{2}\right)\left(\overline{z}+\overline{\dfrac{a}{2}}\right)=|z|^2+\dfrac{z\overline{a}}{2}+\dfrac{a\overline{a}}{2}+\dfrac{|a|^2}{4}=|z|^2+\Re(az)+\dfrac{|a|^2}{4}$\\
+        $\implies |z|^2+\Re(az)=|z+a|^2-\dfrac{|a|^2}{4}.$\\
+        sustituyendo en la ecuaci\'on del ejercicio:\\
+        $|z+a|^2-\dfrac{|a|^2}{4}+b=0\iff |z+a|^2=\dfrac{|a|^2}{4}-b.$\\
+        El lado izquierdo de la ecuaci\'on siempre es un n\'umero real mayor o igual a cero, para que se cumpla la igualdad tenemos que:\\
+        $\dfrac{|a|^2}{4}\geq b\iff|a|^2\geq4b.$\\
+        Ahora, tambi\'en podemos asociar una circunferencia centrada en $z=-a$ y de radio $r=\sqrt{\dfrac{|a|^2}{4}-b}$\\
+        $\implies\overline{\mathbb{D}_r(-a)}=\left\{|z-(-a)|\leq\sqrt{\dfrac{|a|^2}{4}-b}\right\}.$
+
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{example}{}
+    Demostrar que para todo n\'umero complejo $z\in \mathbb C$ tal que  $|z|=R>2$, se cumple:
+    \[
+        \left|\frac{1}{z^{2}+z+1}\right|\leq\frac{1}{R^{2}-R-1}.
+    \]
+\end{example}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{sol}
+    \begin{solucion}{}
+        Recordemos la \emph{desigualdad generalizada del tri\'angulo} que afirma que para $z_1,z_2\in\C$,
+        \begin{equation}\label{eq:triangulooo}
+            ||z_1|-|z_2||\leq|z_1\pm z_2|\leq|z_1|+|z_2|.
+        \end{equation}
+        Aplicando \eqref{eq:triangulooo}, tenemos que
+        $$|z^2+z+1|=|(z^2+1)+z|\geq||z^2+1|-|z||.$$
+        Observemos que por la desigualdad del tri\'angulo \eqref{eq:trianguloo} y considerando que $|z|=R>2$, tenemos
+        $$|z^2+1|\geq||z^2|-|1||=||z|^2-1|=R^2-1.$$
+        Restando $|z|$ en ambos lados de la desigualdad y reordenando,
+        $$|z^2+1|-|z|\geq R^2-R-1$$
+        podemos notar que $|z^2+1|-|z|>1$
+        por lo que
+        $$||z^2+1|-|z||=|z^2+1|-|z|.$$
+        Entonces,
+        $$|z^2+z+1|\geq R^2-R-1$$
+        y finalmente,
+        $$
+            \frac{1}{|z^2+z+1|}\leq\frac{1}{ R^2-R-1}.
+        $$
+    \end{solucion}
+\end{sol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
+
+
+
+
+
